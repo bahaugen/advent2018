@@ -66,24 +66,15 @@ struct Patch{
 };
 
 bool overlap(Patch p1, Patch p2){
-    unordered_set<string> p1_squares;
-    string square;
-    for (unsigned w=0; w<p1.width; w++){
-        for (unsigned h=0; h<p1.height; h++){
-            square = to_string(p1.left+w) + "," + to_string(p1.top+h);
-            p1_squares.insert(square);
-        }
+    unsigned x_min=p2.left, x_max=p2.left+p2.width;
+    if (x_max<p1.left || x_min>p1.left+p1.width){
+        return false;
     }
-
-    for (unsigned w=0; w<p2.width; w++){
-        for (unsigned h=0; h<p2.height; h++){
-            square = to_string(p2.left+w) + "," + to_string(p2.top+h);
-            if(p1_squares.find(square)!=p1_squares.end()){
-                return true;
-            }
-        }
+    unsigned y_min=p2.top, y_max=p2.top+p2.height;
+    if (y_max<p1.top || y_min>p1.top+p1.height){
+        return false;
     }
-    return false;
+    return true;
 }
 
 void part2(){
