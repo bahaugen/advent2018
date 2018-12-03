@@ -1,4 +1,4 @@
-//Advent of Code 2018 - 1
+//Advent of Code 2018 - 2
 
 #include <iostream>
 #include <fstream>
